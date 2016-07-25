@@ -21,32 +21,29 @@ public class GameController : MonoBehaviour {
     public Text texto1;
     private GameObject gameObject;
     public int verba = 1000000;
-  
-    public bool ok = true;
-    public TextAsset asset;
-    
     [SerializeField]
-    private GameObject isFadeActive;
-    [SerializeField]
-    private GameObject day;
-    float a;
+    private TextAsset asset;
     public bool inGame;
     [SerializeField]
-    private GameObject magnifyGlass_C;
+    private int tempDay;
     [SerializeField]
-    private GameObject magnifyGlass;
+    private Text day;
+
+    private int dayActual;
+    [SerializeField]
+    private GameObject Canvas;
+    [SerializeField]
+    private GameObject fade;
 
 
     void Start()
     {
+        inGame = false;
         seconds = 0;
         minutes = 0;
-        randomSpawn = 2;
-        ok = true;
+        randomSpawn = Random.Range(40, 50);
         GetAllDocs();
-        this.isFadeActive.SetActive(true);
-        inGame = false;
-       
+        dayActual = 1;
     }
     void GetAllDocs()
     {
@@ -60,23 +57,18 @@ public class GameController : MonoBehaviour {
                 new Vector3(int.Parse(vector[0]), int.Parse(vector[1]), int.Parse(vector[2])), int.Parse(splitProps[3]));
         }
     }
-    public void StartToGame()
+	void FixedUpdate ()
     {
-        inGame = true;
-    }
-
-	void FixedUpdate () 
-    {
-        if(inGame) 
+        if(inGame)
         {
             texto1.text = "Verba:" + verba.ToString();
-            seconds = Mathf.FloorToInt(Time.fixedTime);
+            seconds = 240 + Mathf.FloorToInt(Time.fixedTime);
             minutes = Mathf.FloorToInt(seconds / 60);
             seconds = seconds - (60 * minutes);
             if(seconds < 10 && minutes < 10)
-                clock.text = "0" +  minutes + ":0" + seconds;
-            else if ( minutes < 10)
-                clock.text = "0" +  minutes + ":" + seconds;
+                clock.text = "0" + minutes + ":0" + seconds;
+            else if (minutes < 10)
+                clock.text = "0" + minutes + ":" + seconds;
             else if (seconds < 10)
                 clock.text = minutes + ":0" + seconds;
             else
@@ -85,16 +77,41 @@ public class GameController : MonoBehaviour {
             if(seconds.Equals(randomSpawn))
             {
                 OnCreate();
-                randomSpawn = Random.Range(0,59);
+                randomSpawn = Random.Range(0,30);
             }
-            randomSpawn = Random.Range(0, 59);
+            if(minutes >= tempDay)
+            {
+                ProxDay();
+            }
+            day.text = "Day " + dayActual.ToString();
         }
-        else if (isFadeActive.activeSelf && isFadeActive.GetComponent<Image>().color.a < 0.2f)  
+        else
         {
-            magnifyGlass_C.SetActive(true);
-            magnifyGlass.SetActive(true);
-
+            seconds = 240 + Mathf.FloorToInt(Time.fixedTime);
+            minutes = Mathf.FloorToInt(seconds / 60);
+            seconds = seconds - (60 * minutes);
+            if (seconds < 10 && minutes < 10)
+                clock.text = "0" + minutes + ":0" + seconds;
+            else if (minutes < 10)
+                clock.text = "0" + minutes + ":" + seconds;
+            else if (seconds < 10)
+                clock.text = minutes + ":0" + seconds;
+            else
+                clock.text = minutes + ":" + seconds;
+            day.text = "Day " + dayActual.ToString();
         }
+
+
+    }
+    public void ProxDay()
+    {
+        dayActual = 2;
+        seconds = 0;
+        minutes = 0;
+        Canvas.SetActive(false);
+        inGame = false;
+        fade.SetActive(true);
+
     }
     public void OnCreate()
     {
