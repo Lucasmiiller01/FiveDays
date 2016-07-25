@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AF7F1FE8-4C0C-B7E4-E818-62D40D3552A7}</ProjectGuid>
+    <ProjectGuid>{EBF5022F-4587-C7C2-13B8-AFC049229F1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,20 +38,20 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Users/emanuel.umbelino/Downloads/Unity 5.3.4f1/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Users/Gabriel.Souza/Downloads/Unity 5.3.4f1/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Users/emanuel.umbelino/Downloads/Unity 5.3.4f1/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Users/Gabriel.Souza/Downloads/Unity 5.3.4f1/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AgreementBehaviour.cs" />
+     <Compile Include="Assets\Scripts\AgreementBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/emanuel.umbelino/Downloads/Unity 5.3.4f1/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Gabriel.Souza/Downloads/Unity 5.3.4f1/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Users/emanuel.umbelino/Downloads/Unity 5.3.4f1/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Users/Gabriel.Souza/Downloads/Unity 5.3.4f1/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

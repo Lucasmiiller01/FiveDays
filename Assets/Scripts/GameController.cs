@@ -18,9 +18,16 @@ public class GameController : MonoBehaviour
     public List<string> social = new List<string>();
     public List<string> economico = new List<string>();
     public bool ok = true;
+    public Text timet;
+    public float time_h;
+    public float time_m;
+    public float fixedtime;
+    int random;
     void Start()
     {
+        random = 0;
         counter = 0;
+        time_h = 5;
         ok = true;
     }
 
@@ -107,5 +114,28 @@ public class GameController : MonoBehaviour
     void Update()
     {
         texto1.text = "Verba:" + verba.ToString();
+        time_m = Time.fixedTime;
+
+        if (time_m <= 9) timet.text = time_h + ":0" + Mathf.Round(time_m);
+        else timet.text = time_h + ":" + Mathf.Round(time_m);
+        
+        if(random.Equals(0)) 
+        {
+            random = Random.Range(20, 40);
+            fixedtime = 0;
+        }
+        else if (random >0 ) 
+        {
+            //random = 0;
+            
+            fixedtime = Time.deltaTime;
+        }
+        if (time_m > 59)
+        {
+            OnCreate();
+            time_m = 0;
+            time_h += 1;
+        }
+       
     }
 }
